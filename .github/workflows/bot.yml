@@ -1,0 +1,48 @@
+name: Python_bot
+
+on:
+    push:
+      branches: { main }
+    pull_request:
+      branches: { main }
+
+env:
+  app_name: build_number${{ github.run_number }} 
+
+jobs:
+  build: 
+    runs-on: windows-2022
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Building application
+        run: 
+
+      - name: Uploading result
+        uses: actions/upload-artifact@v3
+        with: g++ hello.cpp -o ${{ env.app_name }}_${{ runner.os }}
+          name: Artifact
+          path: ${{ env.app_name }}_${{ runner.os }}
+          retention-days: 5
+
+message_sending: 
+needs: build
+    runs on: windows-2022
+    
+    steps:
+      #- uses: actions/checkout@v3
+
+      #- uses: actions/download-artifact@v3
+        #with: 
+          #name: artifact_downloader
+          #path: artifacts*/
+
+      - name: Telegram-bot
+        uses: appleboy/telegram-action@master
+        with: 
+          to: ${{ secrets.chat_id }}
+          token: ${{ secrets.bot_token }}
+          message: 
+            An event occured in ${{ github.repository }} repository
+            ${{ github.event_name }}
+            document: ${{ env.app_name }}_${{ runner.os }}
