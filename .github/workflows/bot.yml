@@ -16,11 +16,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Building application
-        run: 
+        run: g++ hello.cpp -o ${{ env.app_name }}_${{ runner.os }}
 
       - name: Uploading result
         uses: actions/upload-artifact@v3
-        with: g++ hello.cpp -o ${{ env.app_name }}_${{ runner.os }}
+        with: 
           name: artifacts
           path: ${{ env.app_name }}_${{ runner.os }}
           retention-days: 5
