@@ -21,7 +21,7 @@ jobs:
       - name: Uploading result
         uses: actions/upload-artifact@v3
         with: g++ hello.cpp -o ${{ env.app_name }}_${{ runner.os }}
-          name: Artifact
+          name: artifacts
           path: ${{ env.app_name }}_${{ runner.os }}
           retention-days: 5
 
