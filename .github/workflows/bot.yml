@@ -46,4 +46,4 @@ message_sending:
           message: 
             An event occured in ${{ github.repository }} repository
             ${{ github.event_name }}
-            document: ${{ env.app_name }}_${{ runner.os }}
+           document: ${{ env.app_name }}_${{ runner.os }}
