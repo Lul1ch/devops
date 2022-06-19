@@ -34,8 +34,8 @@ jobs:
       
       - uses: actions/download-artifact@v3
         with:
-          name: artifacts_downloader
-          path: artifacts
+          name: artifacts
+          path: artifacts_folder
       
       - name: Telegram-bot
         uses: appleboy/telegram-action@master
@@ -45,4 +45,4 @@ jobs:
           message: 
             An event occured in ${{ github.repository }} repository
             ${{ github.event_name }}
-          document: artifacts/**
+          document: artifacts_folder/**
