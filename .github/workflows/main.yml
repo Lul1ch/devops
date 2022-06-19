@@ -42,7 +42,8 @@ jobs:
         with: 
           to: ${{ secrets.CHAT_ID }}
           token: ${{ secrets.BOT_TOKEN }}
-          message: 
-            An event occured in ${{ github.repository }} repository
-            ${{ github.event_name }}
+          message: |
+            Repository: ${{ github.repository }} 
+            Event: ${{ github.event_name }}
+            Branch: ${{ github.branch_name }}
           document: artifacts_folder/**
