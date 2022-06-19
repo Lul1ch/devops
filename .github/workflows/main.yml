@@ -41,8 +41,8 @@ jobs:
       - name: Telegram-bot
         uses: appleboy/telegram-action@master
         with: 
-          to: ${{ secrets.chat_id }}
-          token: ${{ secrets.bot_token }}
+          to: ${{ secrets.CHAT_ID }}
+          token: ${{ secrets.BOT_TOKEN }}
           message: 
             An event occured in ${{ github.repository }} repository
             ${{ github.event_name }}
