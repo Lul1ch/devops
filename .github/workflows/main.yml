@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Building application
-        run: g++ hello.cpp -o ${{ env.app_name }}_${{ runner.os }}
+        run: g++ chess.cpp -o ${{ env.app_name }}_${{ runner.os }}
 
       - name: Uploading result
         uses: actions/upload-artifact@v3
