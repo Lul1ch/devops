@@ -23,7 +23,6 @@ jobs:
         with: 
           name: artifacts
           path: ${{ env.app_name }}_${{ runner.os }}
-          retention-days: 5
 
   message_sending: 
     needs: build
@@ -33,6 +32,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
+      - uses: actions/download-artifact@v3
+        with:
+          name: artifacts_downloader
+          path: artifacts
+      
       - name: Telegram-bot
         uses: appleboy/telegram-action@master
         with: 
@@ -41,4 +45,4 @@ jobs:
           message: 
             An event occured in ${{ github.repository }} repository
             ${{ github.event_name }}
-          document: ${{ env.app_name }}_${{ runner.os }}
+          document: artifacts/**
