@@ -16,13 +16,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Building application
-        run: g++ hello.cpp -o ${{ env.app_name }}_${{ runner.os }}
+        run: g++ hello.cpp -o ${{ runner.os }}-${{ env.app_name }}
 
       - name: Uploading result
         uses: actions/upload-artifact@v3
         with: 
           name: artifacts
-          path: ${{ env.app_name }}_${{ runner.os }}
+          path: ${{ runner.os }}-${{ env.app_name }}
 
   message_sending: 
     needs: build
